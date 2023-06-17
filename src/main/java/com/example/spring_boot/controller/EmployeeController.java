@@ -17,39 +17,39 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api")
 public class EmployeeController {
 
-  private final EmployeeService employeeService;
+    private final EmployeeService employeeService;
 
-  @Autowired
-  public EmployeeController(EmployeeService employeeService) {
-    this.employeeService = employeeService;
-  }
+    @Autowired
+    public EmployeeController(EmployeeService employeeService) {
+        this.employeeService = employeeService;
+    }
 
-  @GetMapping("/employees")
-  public List<Employee> getAllEmployees() {
-    return employeeService.getAllEmployees();
-  }
+    @GetMapping("/employees")
+    public List<Employee> getAllEmployees() {
+        return employeeService.getAllEmployees();
+    }
 
-  @GetMapping("/employees/{employee_id}")
-  public Employee getEmployee(@PathVariable("employee_id") int id) {
-    return employeeService.getEmployee(id);
-  }
+    @GetMapping("/employees/{employee_id}")
+    public Employee getEmployee(@PathVariable("employee_id") int id) {
+        return employeeService.getEmployee(id);
+    }
 
-  // Аннотация @RequestBody связывает тело HTTP метода с параметром метода Controller-а
-  @PostMapping("/employees")
-  public Employee addEmployee(@RequestBody Employee employee) {
-    employeeService.saveEmployee(employee);
-    return getEmployee(employee.getId());
-  }
+    // Аннотация @RequestBody связывает тело HTTP метода с параметром метода Controller-а
+    @PostMapping("/employees")
+    public Employee addEmployee(@RequestBody Employee employee) {
+        employeeService.saveEmployee(employee);
+        return getEmployee(employee.getId());
+    }
 
-  @PutMapping("/employees")
-  public Employee updateEmployee(@RequestBody Employee employee) {
-    employeeService.saveEmployee(employee);
-    return employee;
-  }
+    @PutMapping("/employees")
+    public Employee updateEmployee(@RequestBody Employee employee) {
+        employeeService.saveEmployee(employee);
+        return employee;
+    }
 
-  @DeleteMapping("/employees/{employee_id}")
-  public void deleteEmployee(@PathVariable("employee_id") int id) {
-    employeeService.deleteEmployee(id);
-  }
+    @DeleteMapping("/employees/{employee_id}")
+    public void deleteEmployee(@PathVariable("employee_id") int id) {
+        employeeService.deleteEmployee(id);
+    }
 
 }
