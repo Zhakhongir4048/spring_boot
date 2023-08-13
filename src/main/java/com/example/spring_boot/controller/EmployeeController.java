@@ -2,7 +2,10 @@ package com.example.spring_boot.controller;
 
 import com.example.spring_boot.entity.Employee;
 import com.example.spring_boot.service.EmployeeService;
+
 import java.util.List;
+
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,14 +18,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api")
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class EmployeeController {
 
     private final EmployeeService employeeService;
-
-    @Autowired
-    public EmployeeController(EmployeeService employeeService) {
-        this.employeeService = employeeService;
-    }
 
     @GetMapping("/employees")
     public List<Employee> getAllEmployees() {
@@ -34,7 +33,9 @@ public class EmployeeController {
         return employeeService.getEmployee(id);
     }
 
-    // Аннотация @RequestBody связывает тело HTTP метода с параметром метода Controller-а
+    /***
+     * Аннотация @RequestBody связывает тело HTTP метода с параметром метода Controller-а
+     */
     @PostMapping("/employees")
     public Employee addEmployee(@RequestBody Employee employee) {
         employeeService.saveEmployee(employee);
