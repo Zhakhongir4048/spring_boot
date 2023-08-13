@@ -1,6 +1,7 @@
 package com.example.spring_boot.dao;
 
 import com.example.spring_boot.entity.Employee;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -8,16 +9,14 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import java.util.List;
 
+/**
+ * Класс, который ответственен за работу с Базой данных
+ */
 @Repository
-// Класс, который ответственен за работу с Базой данных
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class EmployeeDAOImpl implements EmployeeDAO {
 
     private final EntityManager entityManager;
-
-    @Autowired
-    public EmployeeDAOImpl(EntityManager entityManager) {
-        this.entityManager = entityManager;
-    }
 
     @Override
     public List<Employee> getAllEmployees() {

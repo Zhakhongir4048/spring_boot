@@ -2,6 +2,7 @@ package com.example.spring_boot.service;
 
 import com.example.spring_boot.dao.EmployeeDAO;
 import com.example.spring_boot.entity.Employee;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -11,14 +12,10 @@ import java.util.List;
 
 @Service
 @Transactional
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class EmployeeServiceImpl implements EmployeeService {
 
     private final EmployeeDAO employeeDAO;
-
-    @Autowired
-    public EmployeeServiceImpl(EmployeeDAO employeeDAO) {
-        this.employeeDAO = employeeDAO;
-    }
 
     @Override
     public List<Employee> getAllEmployees() {
